@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Réservation d'hôtel - Banfora Tourisme</title>
+  <link rel="stylesheet" href="acceuil.css">
+</head>
+<body>
+  <header>
+    <img src="images/logo.png" alt="Logo de Banfora" width="300">
+    <h1>Réservation d'hôtel</h1>
+    <nav>
+      <a href="acceuil.html">Accueil</a>
+      <a href="patrimoine.html">Patrimoine</a>
+      <a href="reservation.html">Réservation</a>
+      <a href="galerie.html">Galerie</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Formulaire de réservation</h2>
+    <form id="reservationForm" action="#" method="post">
+      <label for="nom">Nom complet :</label>
+      <input type="text" id="nom" name="nom" required>
+
+      <label for="email">Adresse email :</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="telephone">Téléphone :</label>
+      <input type="tel" id="telephone" name="telephone" required>
+
+      <label for="date-arrivee">Date d’arrivée :</label>
+      <input type="date" id="date-arrivee" name="date-arrivee" required>
+
+      <label for="date-depart">Date de départ :</label>
+      <input type="date" id="date-depart" name="date-depart" required>
+
+      <label for="chambre">Type de chambre :</label>
+      <select id="chambre" name="chambre" required>
+        <option value="">-- Choisissez --</option>
+        <option value="simple">Chambre simple</option>
+        <option value="double">Chambre double</option>
+        <option value="famille">Chambre familiale</option>
+      </select>
+
+      <label for="message">Message ou demande spéciale :</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+
+      <button type="submit">Réserver maintenant</button>
+    </form>
+
+    <p id="confirmationMessage" style="color: green; font-weight: bold; display: none; margin-top: 10px;">
+      Merci pour votre réservation ! Nous vous contacterons bientôt.
+    </p>
+  </main>
+
+  <script>
+    const form = document.getElementById('reservationForm');
+    const confirmation = document.getElementById('confirmationMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Empêche l'envoi classique
+      confirmation.style.display = 'block'; // Affiche le message
+      form.reset(); // Vide le formulaire
+    }); // ✅ Fermeture correcte ici
+  </script>
+</body>
+</html>

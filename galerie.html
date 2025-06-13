@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Galerie - Sites touristiques de Banfora</title>
+  <link rel="stylesheet" href="acceuil.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('images/bg.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    .gallery-container {
+      width: 90vw;
+      max-width: 1000px;
+      background: #222;
+      border-radius: 15px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 550px;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    .main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+      user-select: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .main-image img:hover {
+      transform: scale(1.05);
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 20px;
+      left: 25px;
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      max-width: 70%;
+      text-shadow: 1px 1px 7px rgba(0,0,0,0.8);
+      user-select: none;
+    }
+
+    .thumbnails {
+      margin-top: 15px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .thumbnail {
+      flex: 0 0 auto;
+      width: 110px;
+      height: 70px;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      border: 3px solid transparent;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.1);
+    }
+
+    .thumbnail.active {
+      border-color: #ff7f50;
+      box-shadow: 0 0 15px #ff7f50;
+    }
+
+    #prevBtn, #nextBtn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    #prevBtn { left: 10px; }
+    #nextBtn { right: 10px; }
+
+    @media (max-width: 700px) {
+      .main-image {
+        height: 350px;
+      }
+      .thumbnail {
+        width: 80px;
+        height: 50px;
+      }
+      .caption {
+        font-size: 1rem;
+        max-width: 90%;
+        bottom: 15px;
+        left: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+     <a href="acceuil.html">Accueil</a>
+    <a href="patrimoine.html">Patrimoine</a>
+    <a href="reservation.html">Réservation</a>
+    <a href="galerie.html">Galerie</a>
+  </nav>
+</header>
+
+<h1>Galerie des sites touristiques de Banfora</h1>
+
+<div class="gallery-container">
+  <div class="main-image" id="main-image-container">
+    <img src="images/domes.jpg" alt="Dômes de Fabédougou" id="main-image" />
+    <div class="caption" id="caption">Dômes de Fabédougou</div>
+    <button id="prevBtn">‹</button>
+    <button id="nextBtn">›</button>
+  </div>
+
+  <div class="thumbnails" id="thumbnails">
+    <!-- Miniatures ajoutées par JS -->
+  </div>
+</div>
+
+<script>
+  const images = [
+    {src: 'images/domes.jpg', alt: 'Dômes de Fabédougou', caption: 'Dômes de Fabédougou'},
+    {src: 'images/cascades.jpg', alt: 'Cascades de Karfiguéla', caption: 'Cascades de Karfiguéla'},
+    {src: 'images/lac.jpg', alt: 'Lac Tengréla', caption: 'Lac Tengréla'},
+    {src: 'images/pics.jpg', alt: 'Pics de Sindou', caption: 'Pics de Sindou'},
+    {src: 'images/mont.jpg', alt: 'Mont Tenakourou', caption: 'Mont Tenakourou'},
+    {src: 'images/niansogoni.jpg', alt: 'Grotte de Niansogoni', caption: 'Grotte de Niansogoni'},
+    {src: 'images/DIDA.jpg', alt: 'Forêt classée de DIDA', caption: 'Forêt classée de DIDA'},
+    {src: 'images/baobab.jpg', alt: 'Baobab sacré', caption: 'Baobab sacré'},
+    {src: 'images/canne.jpg', alt: 'Champ de la canne à sucre', caption: 'Champ de la canne à sucre'},
+    {src: 'images/sn.jpg', alt: 'SN SOSUCO', caption: 'SN SOSUCO'}
+  ];
+
+  const mainImage = document.getElementById('main-image');
+  const caption = document.getElementById('caption');
+  const thumbnailsContainer = document.getElementById('thumbnails');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  let currentIndex = 0;
+
+  // Créer les miniatures
+  images.forEach((img, index) => {
+    const thumbDiv = document.createElement('div');
+    thumbDiv.classList.add('thumbnail');
+    if(index === 0) thumbDiv.classList.add('active');
+
+    const thumbImg = document.createElement('img');
+    thumbImg.src = img.src;
+    thumbImg.alt = img.alt;
+
+    thumbDiv.appendChild(thumbImg);
+    thumbnailsContainer.appendChild(thumbDiv);
+
+    thumbDiv.addEventListener('click', () => {
+      if(currentIndex !== index) {
+        changeMainImage(index);
+      }
+    });
+  });
+
+  function changeMainImage(index) {
+    currentIndex = index;
+    mainImage.src = images[index].src;
+    mainImage.alt = images[index].alt;
+    caption.textContent = images[index].caption;
+
+    const allThumbs = thumbnailsContainer.querySelectorAll('.thumbnail');
+    allThumbs.forEach((thumb, i) => {
+      thumb.classList.toggle('active', i === index);
+    });
+  }
+
+  prevBtn.addEventListener('click', () => {
+    let newIndex = currentIndex - 1;
+    if (newIndex < 0) newIndex = images.length - 1;
+    changeMainImage(newIndex);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    let newIndex = (currentIndex + 1) % images.length;
+    changeMainImage(newIndex);
+  });
+</script>
+
+</body>
+</html>
