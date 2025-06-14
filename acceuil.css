@@ -1,3 +1,8 @@
+/* === STRUCTURE GÉNÉRALE === */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: url('images/bg.jpg') no-repeat center center fixed;
@@ -7,57 +12,79 @@ body {
   text-align: center;
 }
 
-
 header {
-  background-color: #6ab04c;
-  color: white;
-  padding: 00;
+  background-color: red;
+  border: 4px solid black;
+  padding: 20px 0;
+}
+
+header img {
+  max-width: 100%;
+  height: auto;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0;
 }
 
 nav a {
-  margin: 10px;
   text-decoration: none;
   color: white;
   font-weight: bold;
+  background-color: red;
+  border: 2px solid black;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 nav a:hover {
+  background-color: darkred;
   text-decoration: underline;
-
-
 }
 
-/* Style de la galerie photos */
+/* === CONTENU PRINCIPAL === */
+main {
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+/* === GALERIE === */
 .photo-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 1 ou 2 colonnes selon taille écran */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  max-width: 900px;  /* limite largeur max de la galerie */
-  margin: 0 auto; /* centre la galerie */
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .photo-gallery img {
-  width: 100%; /* image prend toute la largeur de sa colonne */
-  height: auto;
+  width: 100%;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   transition: transform 0.3s ease;
-  cursor: pointer;
 }
 
 .photo-gallery img:hover {
   transform: scale(1.05);
 }
 
+/* === PATRIMOINE === */
 ul.patrimoine {
   list-style: none;
   padding: 0;
   margin: 20px auto;
   max-width: 900px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 ul.patrimoine li {
@@ -65,10 +92,9 @@ ul.patrimoine li {
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.15);
   overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
   display: flex;
   flex-direction: column;
+  transition: all 0.4s ease;
 }
 
 ul.patrimoine li:hover {
@@ -81,9 +107,7 @@ ul.patrimoine li a {
   color: #222;
   text-decoration: none;
   padding: 15px;
-  display: block;
   flex-grow: 1;
-  transition: color 0.3s ease;
 }
 
 ul.patrimoine li a:hover {
@@ -94,7 +118,6 @@ ul.patrimoine img {
   width: 100%;
   height: 220px;
   object-fit: cover;
-  display: block;
   border-bottom: 3px solid #007bff;
   border-radius: 15px 15px 0 0;
   transition: transform 0.4s ease;
@@ -106,27 +129,12 @@ ul.patrimoine li:hover img {
 
 ul.patrimoine li a .titre {
   margin-top: 10px;
-  display: block;
   font-weight: 600;
   font-size: 1.3em;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-@media (max-width: 600px) {
-  ul.patrimoine {
-    grid-template-columns: 1fr; /* 1 colonne sur petit écran */
-    max-width: 400px;
-  }
-
-  ul.patrimoine li a .titre {
-    font-size: 1.1em;
-  }
-
-  ul.patrimoine img {
-    height: 180px;
-  }
-}
-
+/* === FORMULAIRES === */
 form {
   max-width: 400px;
   margin: 20px auto;
@@ -134,178 +142,57 @@ form {
   background: #f8f9fa;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #333;
-}
-
+form label,
 form input,
 form select,
 form textarea {
+  display: block;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1.5px solid #ccc;
-  border-radius: 6px;
+  margin-bottom: 10px;
   font-size: 1em;
-  font-family: inherit;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-
-form input:focus,
-form select:focus,
-form textarea:focus {
-  border-color: #007bff;
-  outline: none;
 }
 
 form button {
-  width: 100%;
   padding: 12px;
   background-color: #007bff;
   color: white;
   font-size: 1.1em;
-  font-weight: bold;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 form button:hover {
   background-color: #0056b3;
 }
-  
 
-/* Appliquer une image en fond sur tout le site */
-body {
-  background: url('images/bg.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #333;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
-
-/* Appliquer style rouge avec bord noir à chaque lien du menu */
-nav a {
-  margin: 10px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  background-color: red;       /* fond rouge */
-  border: 2px solid black;     /* bordure noire */
-  padding: 8px 16px;
-  border-radius: 8px;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
-
-/* Effet au survol */
-nav a:hover {
-  background-color: darkred;
-  text-decoration: underline;
-}
-
-/* Le fond du site entier */
-body {
-  margin: 0;
-  background: url('images/bg.jpg') no-repeat center center fixed;
-  background-size: cover;
-  font-family: Arial, sans-serif;
-  color: #333;
-  text-align: center;
-}
-
-/* Le menu (zone rouge encadrée en noir) */
-header {
-  background-color: red;
-  border: 4px solid black;
-  margin: 0;
-  padding: 20px 0;
-}
-
-/* Les liens du menu */
-nav a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  margin: 0 10px;
-  font-size: 18px;
-  background-color: red; /* pour éviter la transparence */
-  padding: 10px 20px;
-  border-radius: 6px;
-}
-
-/* Effet au survol */
-nav a:hover {
-  background-color: darkred;
-  text-decoration: underline;
-}
-<footer>
-  <p>Projet réalisé par : <strong>ZALLE DIAKALIA</strong> &amp; <strong>SERME LAPANON GHISLAIN</strong></p>
-  <p>1ère année Informatique - ESI Burkina Faso</p>
-</footer>
-
-<style>
+/* === FOOTER === */
 footer {
   text-align: center;
   padding: 8px 10px;
   background: #f1f1f1;
   font-size: 12px;
-  color: #333;
-  position: fixed;
+  color: black;
+  position: relative;
   bottom: 0;
-  left: 0;
   width: 100%;
   box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
   z-index: 1000;
 }
-</style>
 
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
-  header {
-    padding: 10px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  header img {
-    width: 80%;
-    max-width: 200px;
-    height: auto;
-  }
-
   nav {
-    display: flex;
     flex-direction: column;
     align-items: center;
   }
 
   nav a {
     width: 90%;
-    margin: 8px 0;
     font-size: 16px;
-    text-align: center;
-  }
-
-  main {
-    padding: 10px;
-  }
-
-  .photo-gallery {
-    grid-template-columns: 1fr; /* une seule colonne */
-    padding: 10px;
-  }
-
-  form {
-    width: 95%;
-    padding: 15px;
+    margin: 8px 0;
   }
 
   ul.patrimoine {
@@ -318,11 +205,21 @@ footer {
     height: auto;
   }
 
+  .photo-gallery {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  form {
+    width: 95%;
+  }
+
+  main {
+    padding: 10px;
+  }
+
   footer {
     font-size: 10px;
     padding: 6px;
-    position: relative;
   }
 }
-
-
